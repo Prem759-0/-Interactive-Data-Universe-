@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Universe — Interactive 3D Knowledge Graph</title>
+ <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="cursor">
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+</div>
+
+<!-- Loading screen -->
+<div id="loading">
+  <div class="loading-ring"></div>
+  <div class="loading-text">Initialising Universe</div>
+</div>
+
+<!-- Main canvas -->
+<canvas id="universe-canvas"></canvas>
+
+<!-- Header -->
+<header id="header">
+  <div class="logo">
+    <div class="logo-mark"></div>
+    <div>
+      <div class="logo-text">Data Universe</div>
+      <div class="logo-sub">Interactive Knowledge Graph</div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="stat-item">
+      <div class="stat-value" id="stat-nodes">0</div>
+      <div class="stat-label">Nodes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="stat-edges">0</div>
+      <div class="stat-label">Connections</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="stat-clusters">0</div>
+      <div class="stat-label">Clusters</div>
+    </div>
+  </div>
+</header>
+
+<!-- Search -->
+<div id="search-bar">
+  <svg class="search-icon" viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>
+  <input id="search-input" type="text" placeholder="Search nodes..." autocomplete="off" />
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar">
+  <div class="panel-section" id="node-info-section">
+    <div class="panel-title">Selected Node</div>
+    <div id="node-info">
+      <div id="node-name">—</div>
+      <div id="node-type">—</div>
+      <div id="node-desc">Click a node in the graph to explore its connections and details.</div>
+      <div id="node-connections">— connections</div>
+    </div>
+  </div>
+
+  <div class="panel-section">
+    <div class="panel-title">Categories</div>
+    <div class="legend-items" id="legend"></div>
+  </div>
+
+  <div class="panel-section">
+    <div class="panel-title">Controls</div>
+    <div class="control-row">
+      <span>Particle Trails</span>
+      <div class="toggle-btn active" id="toggle-trails">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+    <div class="control-row">
+      <span>Auto Orbit</span>
+      <div class="toggle-btn" id="toggle-orbit">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+    <div class="control-row" style="flex-direction:column;align-items:flex-start;gap:4px;">
+      <span>Simulation Speed</span>
+      <input type="range" class="range-slider" id="speed-slider" min="1" max="10" value="5" />
+    </div>
+    <div class="control-row" style="flex-direction:column;align-items:flex-start;gap:4px;">
+      <span>Link Distance</span>
+      <input type="range" class="range-slider" id="distance-slider" min="40" max="200" value="100" />
+    </div>
+  </div>
+</div>
+
+<!-- Toggle sidebar -->
+<button id="toggle-sidebar" aria-label="Toggle panel">
+  <div class="toggle-icon">
+    <span style="width:100%"></span>
+    <span style="width:60%"></span>
+    <span style="width:100%"></span>
+  </div>
+</button>
+
+<!-- Tooltip -->
+<div id="tooltip"></div>
+
+<!-- Bottom bar -->
+<div id="bottom-bar">
+  <div class="hint-row">
+    <div class="hint"><span class="kbd">Drag</span> pan / rotate</div>
+    <div class="hint"><span class="kbd">Scroll</span> zoom</div>
+    <div class="hint"><span class="kbd">Click</span> select node</div>
+    <div class="hint"><span class="kbd">R</span> reset view</div>
+  </div>
+  <div id="fps-counter">60 fps</div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
