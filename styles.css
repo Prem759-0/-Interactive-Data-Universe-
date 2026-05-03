@@ -1,0 +1,252 @@
+
+  .logo-mark::before {
+    content: '';
+    width: 12px; height: 12px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-cyan);
+  }
+  .logo-text {
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .logo-sub {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 300;
+    color: var(--text-muted); letter-spacing: 0.2em;
+    margin-top: 1px;
+  }
+  .header-stats {
+    display: flex; gap: 28px;
+  }
+  .stat-item {
+    text-align: right;
+  }
+  .stat-value {
+    font-family: var(--font-mono); font-size: 18px; font-weight: 500;
+    color: var(--accent-cyan);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-top: 3px;
+  }
+ 
+  /* === SIDEBAR PANEL === */
+  #sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0; z-index: 100;
+    width: 300px;
+    background: linear-gradient(to left, rgba(2,4,8,0.96) 0%, rgba(6,12,22,0.8) 100%);
+    border-left: 1px solid var(--glass-border);
+    padding: 100px 24px 32px;
+    display: flex; flex-direction: column; gap: 24px;
+    backdrop-filter: blur(20px);
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  #sidebar.open { transform: translateX(0); }
+ 
+  .panel-section { display: flex; flex-direction: column; gap: 10px; }
+  .panel-title {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--text-muted); border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 8px;
+  }
+ 
+  /* Node info */
+  #node-info { display: none; }
+  #node-info.visible { display: flex; flex-direction: column; gap: 8px; }
+  #node-name {
+    font-size: 22px; font-weight: 700; line-height: 1.2;
+    color: var(--text-primary);
+  }
+  #node-type {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--accent-cyan); letter-spacing: 0.1em;
+  }
+  #node-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+    margin-top: 4px;
+  }
+  #node-connections {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-muted); margin-top: 4px;
+  }
+ 
+  /* Legend */
+  .legend-items { display: flex; flex-direction: column; gap: 8px; }
+  .legend-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--text-secondary);
+    cursor: pointer; padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .legend-item:hover { background: var(--glass); }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    box-shadow: 0 0 8px currentColor;
+  }
+ 
+  /* Controls */
+  .control-row {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text-secondary);
+  }
+  .toggle-btn {
+    width: 36px; height: 20px;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 10px; cursor: pointer; position: relative;
+    transition: background 0.2s;
+    pointer-events: all;
+  }
+  .toggle-btn.active { background: rgba(0,212,255,0.3); border-color: var(--accent-cyan); }
+  .toggle-knob {
+    position: absolute; top: 2px; left: 2px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--text-secondary); transition: all 0.2s;
+  }
+  .toggle-btn.active .toggle-knob {
+    left: calc(100% - 18px); background: var(--accent-cyan);
+    box-shadow: 0 0 8px var(--accent-cyan);
+  }
+  .range-slider {
+    -webkit-appearance: none; width: 100%; height: 2px;
+    background: var(--glass-border); border-radius: 1px; outline: none;
+    margin-top: 8px;
+  }
+  .range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 14px; height: 14px;
+    border-radius: 50%; background: var(--accent-cyan);
+    cursor: pointer; box-shadow: 0 0 8px var(--accent-cyan);
+  }
+ 
+  /* === TOGGLE SIDEBAR BTN === */
+  #toggle-sidebar {
+    position: fixed; right: 32px; top: 50%;
+    transform: translateY(-50%); z-index: 200;
+    width: 40px; height: 80px;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 8px; cursor: pointer;
+    display: grid; place-items: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    pointer-events: all;
+  }
+  #toggle-sidebar:hover { background: rgba(0,212,255,0.1); border-color: var(--accent-cyan); }
+  .toggle-icon {
+    width: 16px; display: flex; flex-direction: column; gap: 4px; align-items: center;
+  }
+  .toggle-icon span {
+    display: block; height: 1.5px; background: var(--text-secondary);
+    border-radius: 1px; transition: all 0.3s;
+  }
+  .toggle-icon span:nth-child(1) { width: 100%; }
+  .toggle-icon span:nth-child(2) { width: 70%; }
+  .toggle-icon span:nth-child(3) { width: 100%; }
+ 
+  /* === BOTTOM BAR === */
+  #bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 36px;
+    background: linear-gradient(to top, rgba(2,4,8,0.9) 0%, transparent 100%);
+    display: flex; justify-content: space-between; align-items: flex-end;
+    pointer-events: none;
+  }
+  .hint-row { display: flex; gap: 20px; align-items: center; }
+  .hint {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-muted); letter-spacing: 0.1em;
+  }
+  .kbd {
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 4px; padding: 2px 6px;
+    font-size: 9px; color: var(--text-secondary);
+  }
+  #fps-counter {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-muted); letter-spacing: 0.1em;
+  }
+ 
+  /* === SEARCH === */
+  #search-bar {
+    position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+    z-index: 200;
+    width: 340px;
+    pointer-events: all;
+  }
+  #search-input {
+    width: 100%; padding: 10px 16px 10px 40px;
+    background: rgba(6,12,22,0.85); border: 1px solid var(--glass-border);
+    border-radius: 100px; outline: none;
+    font-family: var(--font-display); font-size: 13px;
+    color: var(--text-primary); letter-spacing: 0.02em;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s;
+  }
+  #search-input:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 3px rgba(0,212,255,0.12), var(--glow-cyan);
+  }
+  #search-input::placeholder { color: var(--text-muted); }
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px; opacity: 0.4;
+    stroke: var(--text-primary); fill: none;
+    stroke-width: 2; stroke-linecap: round;
+  }
+ 
+  /* === LOADING === */
+  #loading {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--void);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 24px; transition: opacity 0.8s ease;
+  }
+  #loading.fade-out { opacity: 0; pointer-events: none; }
+  .loading-ring {
+    width: 60px; height: 60px; position: relative;
+  }
+  .loading-ring::before, .loading-ring::after {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+  }
+  .loading-ring::before {
+    border: 1.5px solid var(--glass-border);
+  }
+  .loading-ring::after {
+    border: 1.5px solid transparent;
+    border-top-color: var(--accent-cyan);
+    animation: spin 1s linear infinite;
+    box-shadow: var(--glow-cyan);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--text-muted);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+ 
+  /* === TOOLTIP === */
+  #tooltip {
+    position: fixed; z-index: 300; pointer-events: none;
+    padding: 8px 14px;
+    background: var(--overlay); border: 1px solid var(--glass-border);
+    border-radius: 8px; backdrop-filter: blur(16px);
+    font-size: 12px; color: var(--text-primary);
+    opacity: 0; transition: opacity 0.2s;
+    transform: translate(-50%, calc(-100% - 16px));
+    white-space: nowrap;
+  }
+  #tooltip.visible { opacity: 1; }
+ 
+  /* === ANIMATIONS === */
+  @keyframes fadeInUp {
+    from { opacity:0; transform:translateY(20px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .anim-in { animation: fadeInUp 0.6s ease forwards; }
+ 
